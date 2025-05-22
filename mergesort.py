@@ -10,7 +10,7 @@ comparison_count = 0
 def mergesort(array: list, start_index: int, end_index: int):
   
     global recursion_count
-    recursion_count += 1  
+    recursion_count += 1
 
     if start_index >= end_index:
         return
@@ -65,48 +65,64 @@ def write_stats_to_csv(filename: str, stats: dict):
         
         writer.writerow(stats)
 
-def main():
+def benchmark_mergesort(input_size, csv_filename, repetitions=5):
     global recursion_count, comparison_count
-
-   
-    recursion_count = 0
-    comparison_count = 0
-
     
-    N = 10000  
+    total_elapsed_ms = 0
+    total_recursion_count = 0
+    total_comparison_count = 0
     
+    print(f"Gerando array com {input_size} elementos...")
+    arrays = [[random.randint(1, 1000000) for _ in range(input_size)] for _ in range(repetitions)]
     
-    print(f"Gerando array com {N} elementos...")
-    array = [random.randint(1, 1000000) for _ in range(N)]
-    input_size = len(array)
+    print(f"Iniciando Merge Sort para {input_size} elementos ({repetitions} repetições)...")
     
-    print(f"Iniciando Merge Sort para {input_size} elementos...")
-    start_time = time.perf_counter()
-    mergesort(array, 0, input_size - 1)
-    end_time = time.perf_counter()
+    for i in range(repetitions):
+        array = arrays[i].copy()
+        recursion_count = 0
+        comparison_count = 0
+        
+        start_time = time.perf_counter()
+        mergesort(array, 0, input_size - 1)
+        end_time = time.perf_counter()
+        
+        elapsed_ms = (end_time - start_time) * 1000
+        
+        total_elapsed_ms += elapsed_ms
+        total_recursion_count += recursion_count
+        total_comparison_count += comparison_count
+        
+        print(f"  Repetição {i+1}: {elapsed_ms:.3f} ms, {recursion_count} recursões, {comparison_count} comparações")
     
-    elapsed_ms = (end_time - start_time) * 1000
-    elapsed_s = end_time - start_time
+    # Calculate averages
+    avg_elapsed_ms = total_elapsed_ms / repetitions
+    avg_recursion_count = total_recursion_count / repetitions
+    avg_comparison_count = total_comparison_count / repetitions
     
-    print(f"\n--- Estatísticas da Execução ---")
+    print("\n--- Estatísticas Médias da Execução ---")
     print(f"Tamanho da Entrada (N): {input_size}")
-    print(f"Tempo de Execução: {elapsed_ms:.3f} ms ({elapsed_s:.3f} s)")
-    print(f"Número de Chamadas Recursivas: {recursion_count}")
-    print(f"Número de Comparações: {comparison_count}")
-
+    print(f"Tempo Médio de Execução: {avg_elapsed_ms:.3f} ms")
+    print(f"Número Médio de Chamadas Recursivas: {avg_recursion_count:.1f}")
+    print(f"Número Médio de Comparações: {avg_comparison_count:.1f}")
     
     stats_data = {
         'InputSize': input_size,
-        'ExecutionTime_ms': round(elapsed_ms, 3),
-        'ExecutionTime_s': round(elapsed_s, 3),
-        'RecursionCount': recursion_count,
-        'ComparisonCount': comparison_count
+        'ExecutionTime_ms': round(avg_elapsed_ms, 3),
+        'RecursionCount': round(avg_recursion_count),
+        'ComparisonCount': round(avg_comparison_count)
     }
-
     
-    csv_filename = 'mergesort_stats.csv'
     write_stats_to_csv(csv_filename, stats_data)
-    print(f"Estatísticas salvas em '{csv_filename}'")
+    print(f"Estatísticas médias salvas em '{csv_filename}'\n")
+
+def main():
+    csv_filename = 'mergesort_stats.csv'
+    # More comprehensive range of input sizes for algorithm analysis
+    input_sizes = [100, 500, 1000, 2500, 5000, 7500, 10000, 15000, 20000, 
+                  30000, 50000, 75000, 100000, 150000, 200000, 250000]
+    
+    for input_size in input_sizes:
+        benchmark_mergesort(input_size, csv_filename, 20)
 
 if __name__ == "__main__":
     main()
