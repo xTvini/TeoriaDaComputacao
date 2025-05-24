@@ -1,0 +1,90 @@
+EXAMPLE 1 ---------------------------------
+# Applications of the Inversion Count Concept
+
+## EXAMPLE 1: Parallel External Sorting
+
+Parallel external sorting.
+
+Suppose you need to sort many terabytes of data, much more than you can fit into RAM. You split your data into many shards which are small enough to process. Now several shards can be sorted in parallel, using whatever algorithm you like. The result is a collection of sorted shards.
+
+How do you now iterate over the whole dataset in sorted order? You do a multi-way merge, on the fly. This is the crucial step of merge sort (splitting is the easier part). You may or may not do a full recursive merge sort, but being able to merge already sorted data in sorted order is the core insight.
+
+This can be used for basic external sorting, merge joins in databases, etc. It's a useful general concept to have in your algorithmic toolbox. I would go as far as saying that it's a more widely applicable idea than the core idea of quicksort.
+
+## EXAMPLE 2: Ranking Comparisons and Recommendations
+
+When you sort an array using merge sort, what you do is you put the array you want to obtain on the top and the array you are starting off with at the bottom and connect all the numbers respectively. The number of intersections you obtain will be your number of inversions, as shown in the above image.
+
+The maximum number of inversions you can have in an array is n(n-1)/2, where (n) is the size of the array and that is when your array is in the reverse order of the order in which you want to arrange it. I will include the Python code for counting the number of inversions at the end of this answer.
+
+### How can you use this concept?
+
+Suppose you have a list of 10 things and you have two friends and you ask both the friends to order the things in descending order of their liking. You will have two arrays after that, now you count the number of inversions they have and more the number of inversions, the more dissimilar their choices are, less the number of inversions the more similar their choices are.
+
+### The e-commerce application
+
+Have you ever noticed on any e-commerce website, they have this section of "You might like"? They have maintained an array for all the user accounts and then whichever has the least number of inversions with your array of choices, they start recommending what they have bought or they like. I am not going into the time and space complexity details of the algorithm. Obviously there are a lot of ways of doing this and this is one of them.
+
+https://qph.cf2.quoracdn.net/main-qimg-81ccf621e72d0a12496a16ffc5a63612-pjlq
+
+### In Summary
+
+#### Comparing rankings
+
+If you have two rankings (e.g., two people ranking products), you can measure how similar their tastes are by comparing the number of inversions between the two arrays.
+
+More inversions = more different rankings.
+
+#### Recommendations
+
+E-commerce can use this concept:
+- Create preference vectors for each user.
+- Compare with your vector.
+- Fewer inversions = more similar tastes.
+- Then, recommend products based on the closest "neighbors".
+
+-------------------
+
+Suponha que você precise ordenar muitos terabytes de dados, muito mais do que pode caber na RAM. Você divide seus dados em muitos "shards" (pedaços/fragmentos) que são pequenos o suficiente para serem processados. Agora, vários shards podem ser ordenados em paralelo, usando o algoritmo que você preferir. O resultado é uma coleção de shards já ordenados.
+
+Como você agora itera sobre todo o conjunto de dados em ordem ordenada? Você faz uma intercalação (merge) multi-via, "on the fly" (em tempo real). Este é o passo crucial do merge sort (dividir é a parte mais fácil). Você pode ou não fazer um merge sort recursivo completo, mas ser capaz de intercalar dados já ordenados em ordem é a ideia central.
+
+Isso pode ser usado para ordenação externa básica, "merge joins" em bancos de dados, etc. É um conceito geral útil para ter em sua caixa de ferramentas algorítmicas. Eu iria tão longe a ponto de dizer que é uma ideia mais amplamente aplicável do que a ideia central do quicksort.
+
+--------------------------
+
+## EXEMPLO 2: Comparação de Rankings e Recomendações
+
+Quando você ordena um array usando merge sort, o que você faz é colocar o array que você deseja obter no topo e o array com que você está começando na parte inferior, e conectar todos os números respectivamente. O número de interseções que você obtém será seu número de inversões, como mostrado na imagem acima.
+
+O número máximo de inversões que você pode ter em um array é n(n-1)/2, onde (n) é o tamanho do array, e isso ocorre quando seu array está na ordem inversa da ordem em que você deseja organizá-lo. Incluirei o código Python para contar o número de inversões no final desta resposta.
+
+### Como você pode usar este conceito?
+
+Suponha que você tenha uma lista de 10 coisas e tenha dois amigos, e peça a ambos para ordenar as coisas em ordem decrescente de preferência. Você terá dois arrays depois disso. Agora, você conta o número de inversões que eles têm: quanto maior o número de inversões, mais diferentes são suas escolhas; quanto menor o número de inversões, mais similares são suas escolhas.
+
+### A aplicação em e-commerce
+
+Você já notou em algum site de e-commerce aquela seção "Você pode gostar"? Eles mantêm um array para todas as contas de usuário e, em seguida, qualquer um que tenha o menor número de inversões com seu array de escolhas, eles começam a recomendar o que compraram ou do que gostam. Não vou entrar nos detalhes de complexidade de tempo e espaço do algoritmo. Obviamente, existem muitas maneiras de fazer isso e esta é uma delas.
+
+https://qph.cf2.quoracdn.net/main-qimg-81ccf621e72d0a12496a16ffc5a63612-pjlq
+
+### Em Resumo
+
+#### Comparando rankings
+
+Se você tiver dois rankings (por exemplo, duas pessoas classificando produtos), pode medir quão semelhantes são seus gostos comparando o número de inversões entre os dois arrays.
+
+Mais inversões = rankings mais diferentes.
+
+#### Recomendações
+
+O e-commerce pode usar este conceito:
+- Criar vetores de preferência para cada usuário.
+- Comparar com o seu vetor.
+- Menos inversões = gostos mais similares.
+- Em seguida, recomendar produtos com base nos "vizinhos" mais próximos.
+
+
+Pra essa etapa fizemos vários experimentos práticos, primeiro como mostrado acima implementamos
+o algoritmo em python e c, registrando várias métricas importantes como tempo de execução,

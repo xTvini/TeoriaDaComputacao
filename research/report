@@ -1,0 +1,41 @@
+Relatório de Coleta e Análise de Dados: Comparação do Merge Sort em Python e C
+Introdução
+Neste experimento, implementamos o algoritmo Merge Sort em duas linguagens de programação distintas: Python e C. O objetivo foi comparar o desempenho de ambas as implementações, utilizando métricas quantitativas e visuais para avaliar eficiência, escalabilidade e aplicabilidade prática do algoritmo em diferentes contextos.
+
+Metodologia
+1. Implementação
+Desenvolvemos duas versões do Merge Sort: uma em Python (mergesort.py) e outra em C (mergesort.c).
+Ambas as implementações foram projetadas para registrar métricas detalhadas, como tempo de execução, número de chamadas recursivas e número de comparações realizadas durante a ordenação.
+2. Definição dos Experimentos
+Os tamanhos dos datasets foram definidos no arquivo input_sizes.txt, garantindo que ambos os programas processassem exatamente os mesmos conjuntos de dados.
+Para cada tamanho de entrada, o experimento foi repetido 20 vezes, permitindo o cálculo de médias e desvios padrão das métricas coletadas.
+3. Coleta de Dados
+Os resultados de cada execução foram salvos em arquivos CSV separados para Python (mergesort_stats_python.csv) e C (mergesort_stats_c.csv).
+As métricas coletadas incluem:
+Tamanho do dataset
+Tempo de execução médio (ms)
+Desvio padrão do tempo de execução
+Número médio de chamadas recursivas
+Desvio padrão das chamadas recursivas
+Número médio de comparações
+Desvio padrão das comparações
+4. Análise e Visualização
+Os dados foram consolidados em um arquivo resumo (mergesort_comparison_summary.csv).
+
+Utilizando Python (Matplotlib/Seaborn), geramos gráficos comparativos:
+
+Tempo de execução medido: Mostra a diferença de performance entre Python e C para diferentes tamanhos de entrada.
+Tempo medido vs. complexidade teórica (n log n): Permite verificar se o comportamento prático segue a expectativa teórica.
+Velocidade de execução (itens/ms): Compara a eficiência das linguagens em processar grandes volumes de dados.
+Os gráficos foram salvos na pasta img para fácil consulta e inclusão em relatórios.
+
+Resultados
+Os gráficos mostram claramente que a implementação em C é significativamente mais rápida que a de Python, especialmente para grandes volumes de dados.
+Ambas as implementações seguem a complexidade teórica O(n log n), mas a diferença de performance absoluta é notável.
+A velocidade de execução (itens/ms) evidencia a vantagem do C em aplicações que exigem alta performance.
+Conclusão
+A análise demonstra que, embora o Merge Sort mantenha sua eficiência teórica em ambas as linguagens, a escolha da linguagem de implementação impacta fortemente o desempenho prático. Para aplicações que exigem processamento intensivo e baixo tempo de resposta, a implementação em C é mais indicada. Já para prototipagem rápida e facilidade de desenvolvimento, Python pode ser suficiente para volumes menores.
+
+Reprodutibilidade
+Todo o processo foi automatizado por meio de um orquestrador (orchestrator.py), que executa ambos os benchmarks, gera os arquivos de dados e produz os gráficos finais, garantindo reprodutibilidade e facilidade de atualização dos resultados.
+
