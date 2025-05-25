@@ -1,5 +1,4 @@
 import subprocess
-import sys
 import os
 from project.constants.orchestrator_constants import *
 

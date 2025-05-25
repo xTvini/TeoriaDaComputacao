@@ -22,3 +22,5 @@ entradas (pequenas, médias, grandes), e para cada entrada, executar múltiplas 
 
 7. Reflexão final: O algoritmo pertence à classe P? Existe uma versão NP? Há problemas
 semelhantes que são NP-completos?
+
+

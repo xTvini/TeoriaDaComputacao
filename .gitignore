@@ -54,3 +54,4 @@ dkms.conf
 .vscode
 output/
 venv
+/__pycache__/
