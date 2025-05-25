@@ -5,7 +5,7 @@ from project.constants.orchestrator_constants import *
 
 def run_python_benchmark():
     print(PRINT_RUNNING_PY)
-    result = subprocess.run([sys.executable, PYTHON_BENCHMARK], capture_output=True, text=True)
+    result = subprocess.run(PYTHON_BENCHMARK_SCRIPT, capture_output=True, text=True)
     print(result.stdout)
     if result.returncode != 0:
         print(result.stderr)
@@ -28,7 +28,7 @@ def build_and_run_c_benchmark():
 
 def run_comparison():
     print(PRINT_RUNNING_COMP)
-    result = subprocess.run([sys.executable, COMPARISON_SCRIPT], capture_output=True, text=True)
+    result = subprocess.run(COMPARISON_SCRIPT, capture_output=True, text=True)
     print(result.stdout)
     if result.returncode != 0:
         print(result.stderr)

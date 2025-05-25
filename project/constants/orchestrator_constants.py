@@ -1,9 +1,9 @@
 # Constants for the orchestrator script
 
-PYTHON_BENCHMARK = 'project.mergesort'
+PYTHON_BENCHMARK_SCRIPT = ['python3', '-m', 'project.mergesort']
 C_BENCHMARK = 'project/mergesort.c'
 C_OUTPUT = 'output/mergesort'
-COMPARISON_SCRIPT = 'project/mergesort_comparison.py'
+COMPARISON_SCRIPT = ['python3', '-m','project.mergesort_comparison']
 PYTHON_RESULTS = 'project/data/datasheet_python.csv'
 C_RESULTS = 'project/data/datasheet_clang.csv'
 SUMMARY_CSV = 'project/data/mergesort_comparison_summary.csv'
