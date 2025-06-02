@@ -80,9 +80,9 @@ O projeto segue um fluxo de trabalho automatizado orquestrado por `project/orche
     *   **seaborn** (>=0.12.0) - Para visualizações estatísticas avançadas
     *   **numpy** (>=1.24.0) - Para computação científica (dependência implícita das outras bibliotecas)
 
-3.  **Clonar o Repositório (se ainda não fez):**
+3.  **Clonar o Repositório:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/xTvini/TeoriaDaComputacao.git
     cd TeoriaDaComputacao
     ```
 
