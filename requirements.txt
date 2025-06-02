@@ -1,0 +1,10 @@
+# Dependências para o projeto de comparação do Merge Sort
+# Análise e manipulação de dados
+pandas>=1.5.0
+
+# Visualização de dados
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Computação científica e estatística
+numpy>=1.24.0

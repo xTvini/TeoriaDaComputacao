@@ -1,0 +1,39 @@
+#Funçãp mergesort(arr, inicio, fim)
+
+    incrementa contador de recursão
+
+    se inicio < fim então:
+        meio ← (inicio + fim) / 2
+        chama mergesort(arr, inicio, meio)
+        chama mergesort(arr, meio + 1, fim)
+        chama merge(arr, inicio, meio, fim)
+
+
+#Função merge(arr, inicio, meio, fim):
+    i ← inicio
+    j ← meio + 1
+    novo_array ← vetor vazio de tamanho (fim - inicio + 1)
+    k ← 0
+
+    enquanto i ≤ meio e j ≤ fim:
+        incrementa contador de comparações
+        se arr[i] ≤ arr[j]:
+            novo_array[k] ← arr[i]
+            i ← i + 1
+        senão:
+            novo_array[k] ← arr[j]
+            j ← j + 1
+        k ← k + 1
+
+    enquanto i ≤ meio:
+        novo_array[k] ← arr[i]
+        i ← i + 1
+        k ← k + 1
+
+    enquanto j ≤ fim:
+        novo_array[k] ← arr[j]
+        j ← j + 1
+        k ← k + 1
+
+    para índice de 0 até (k - 1):
+        arr[inicio + índice] ← novo_array[índice]
