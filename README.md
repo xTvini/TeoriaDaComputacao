@@ -86,13 +86,39 @@ O projeto segue um fluxo de trabalho automatizado orquestrado por `project/orche
     cd TeoriaDaComputacao
     ```
 
-4.  **Instalar Dependências Python:**
-    Navegue até o diretório raiz do projeto (onde `requirements.txt` está localizado) e execute:
+4.  **Criar e Ativar um Ambiente Virtual (Recomendado):**
+    É altamente recomendado usar um ambiente virtual para isolar as dependências do projeto:
+    
+    **No Linux/macOS:**
+    ```bash
+    # Criar o ambiente virtual
+    python3 -m venv venv
+    
+    # Ativar o ambiente virtual
+    source venv/bin/activate
+    ```
+    
+    **No Windows:**
+    ```bash
+    # Criar o ambiente virtual
+    python -m venv venv
+    
+    # Ativar o ambiente virtual
+    venv\Scripts\activate
+    ```
+    
+    Para desativar o ambiente virtual quando terminar:
+    ```bash
+    deactivate
+    ```
+
+5.  **Instalar Dependências Python:**
+    Com o ambiente virtual ativado, navegue até o diretório raiz do projeto (onde `requirements.txt` está localizado) e execute:
     ```bash
     pip install -r requirements.txt
     ```
 
-5.  **Executar o Orquestrador:**
+6.  **Executar o Orquestrador:**
     Para executar todo o pipeline de benchmark e análise, execute o script orquestrador do diretório raiz:
     ```bash
     python -m project.orchestrator
@@ -102,7 +128,7 @@ O projeto segue um fluxo de trabalho automatizado orquestrado por `project/orche
     python -m project.orchestrator --clean
     ```
 
-6.  **Saídas:**
+7.  **Saídas:**
     Após execução bem-sucedida, você encontrará:
     *   Dados brutos de benchmark para Python: `project/data/datasheet_python.csv`
     *   Dados brutos de benchmark para C: `project/data/datasheet_clang.csv`
@@ -114,8 +140,11 @@ Para mais detalhes sobre constantes específicas usadas (como número de repeti�
 ## Solução de Problemas
 
 ### Problemas Comuns de Dependências
-- **Erro de importação do pandas/matplotlib/seaborn**: Certifique-se de ter executado `pip install -r requirements.txt`
+- **Erro de importação do pandas/matplotlib/seaborn**: 
+  - Certifique-se de ter ativado o ambiente virtual com `source venv/bin/activate` (Linux/macOS) ou `venv\Scripts\activate` (Windows)
+  - Execute `pip install -r requirements.txt` com o ambiente virtual ativado
 - **Versão Python incompatível**: Verifique se está usando Python 3.8 ou superior com `python --version`
+- **Conflitos de dependências**: Use um ambiente virtual para evitar conflitos com outras instalações Python
 - **GCC não encontrado**: Instale o GCC através do gerenciador de pacotes do seu sistema:
   - Ubuntu/Debian: `sudo apt-get install build-essential`
   - macOS: `xcode-select --install`
